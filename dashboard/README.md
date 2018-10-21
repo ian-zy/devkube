@@ -1,7 +1,9 @@
 # Setup Dashboard UI in local K8S
 
 [Refer to Offical Repo](https://github.com/kubernetes/dashboard)
+
 [Create admin user](https://github.com/kubernetes/dashboard/wiki/Creating-sample-user)
+
 [Docker for Mac with Kubernetes — Enable K8S Dashboard](https://medium.com/@thms.hmm/docker-for-mac-with-kubernetes-enable-k8s-dashboard-62fe036b7480)
 
 ## How to use
