@@ -1,0 +1,50 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nevergreen-deployment
+  labels:
+    app: nevergreen-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nevergreen-server
+  template:
+    metadata:
+      labels:
+        app: nevergreen-server
+    spec:
+      containers:
+      - name: nevergreen-server
+        image: buildcanariesteam/nevergreen:2.0.0
+        ports:
+        - containerPort: 5000
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nevergreen-service
+spec:
+  selector:
+    app: nevergreen-server
+  ports:
+  - port: 5000
+
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: nevergreen-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+spec:
+  rules:
+  - host: nevergreen.dv
+    http:
+      paths:
+      - backend:
+          serviceName: nevergreen-service
+          servicePort: 5000

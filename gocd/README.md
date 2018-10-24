@@ -11,3 +11,5 @@
 ## How to setup
 
 Run script `./install.sh`
+
+To install CI monitor with nevergreen: `kubectl apply -f nevergreen.yml`
